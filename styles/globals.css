@@ -92,3 +92,21 @@ body {
     --background-end-rgb: 0, 0, 0;
   }
 }
+@media (max-width: 768px) {
+  body {
+    /* Add the mobile background image */
+    background-image: url('../public/bgmobile.png'); /* Update the path as needed */
+    background-position: center; /* Center the image */
+    background-size: contain; /* Ensure the image fits within the container without stretching */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+
+    /* Disables the animations on mobile devices */
+    animation: none;
+  }
+
+  body::before,
+  body::after {
+    /* Hide the pseudo-elements */
+    content: none;
+  }
+}

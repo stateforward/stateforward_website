@@ -12,7 +12,7 @@ const Footer = () => {
       // Set a timeout to show the footer after a delay when scrolling stops
       timeout = setTimeout(() => {
         setIsVisible(true);
-      }, 1500); // Adjust delay as needed
+      }, 500); 
     };
 
     window.addEventListener('scroll', handleScroll);
