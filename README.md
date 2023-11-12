@@ -2,7 +2,7 @@
 
 ## Overview
 
-StateForward is a NextJS-based web application designed to showcase the power of universal state management across different programming languages. This project utilizes TailwindCSS for styling and DaisyUI for UI components, providing a sleek, responsive user interface. The application features dynamic content presentation using React's state management and showcases code snippets using SyntaxHighlighter.
+StateForward's website is a NextJS-based web application designed to showcase the power of StateForward and it's universal state management across different programming languages. The website utilizes TailwindCSS for styling and DaisyUI for UI components, providing a sleek, responsive user interface. The application features dynamic content presentation using React's state management and showcases code snippets using SyntaxHighlighter.
 
 ## Features
 
