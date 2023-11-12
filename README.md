@@ -1,4 +1,4 @@
-# StateForward - Universal State Management
+# Website for StateForward.org
 
 ## Overview
 
