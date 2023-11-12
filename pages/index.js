@@ -73,7 +73,7 @@ export default function Home() {
         {showWarningAlert && <div className="alert-warning">Failed to copy!</div>}
               <h2 className="text-3xl font-bold mt-16">See it in action!</h2>
           <TabbedContent />
-          <div className="flex flex-col md:flex-row justify-center items-center mt-4 mb-16 mx-8">
+          <div className="flex flex-col md:flex-row justify-center items-center mt-4 mb-[8px] mx-[8px]">
           <InfoCardGroup />
           </div>
         </div>
