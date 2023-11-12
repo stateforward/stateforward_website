@@ -16,14 +16,14 @@ const TabbedContent = () => {
     }`}
               </SyntaxHighlighter>
             );
-          case 'React':
+          case 'Javascript':
             return (
               <SyntaxHighlighter language="jsx" style={atomDark}>
-    {`// React code example
-    import React from 'react';
+    {`// Javascript code example
+    import Javascript from 'javascript';
     
     function App() {
-      return <div>Hello, React!</div>;
+      return <div>Hello, Javascript!</div>;
     }
     
     export default App;`}
@@ -83,7 +83,7 @@ asyncio.run(main())`}
       <div className="tabs mt-8 mb-0 flex justify-center">
         <a className={`tab tab-md tab-lifted ${activeTab === 'Rust' ? 'tab-active' : ''}`} onClick={() => setActiveTab('Rust')}>Rust</a> 
         <a className={`tab tab-md tab-lifted ${activeTab === 'Python' ? 'tab-active' : ''}`} onClick={() => setActiveTab('Python')}>Python</a> 
-        <a className={`tab tab-md tab-lifted ${activeTab === 'React' ? 'tab-active' : ''}`} onClick={() => setActiveTab('React')}>React</a>
+        <a className={`tab tab-md tab-lifted ${activeTab === 'Javascript' ? 'tab-active' : ''}`} onClick={() => setActiveTab('Javascript')}>Javascript</a>
       </div>
       {renderContent()}
     </div>
