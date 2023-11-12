@@ -52,6 +52,10 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The project roadmap is detailed in `pages/roadmap.js`, outlining future enhancements and features.
 
+## Changelog
+
+Stay up-to-date with the latest changes and improvements to StateForward. Visit the Changelog at `pages/changelog.js` to see a list of recent updates and enhancements. Each entry in the changelog provides details about new features, bug fixes, and other significant changes.
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LINK_TO_LICENSE) file for details.
