@@ -12,6 +12,10 @@ const Header = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+  };
+
   const handleClickOutside = (event) => {
     if (menuRef.current && !menuRef.current.contains(event.target)) {
       setIsMenuOpen(false);
@@ -26,9 +30,9 @@ const Header = () => {
     };
   }, []);
 
+
   return (
-    <header className="w-full flex justify-between items-center font-mono text-sm mb-8 p-8 sticky z-50 top-0 border-b border-base-300 bg-black">
-      <div className="flex items-center justify-start">
+    <header className="w-full flex justify-between items-center font-mono text-sm mb-8 p-8 sticky z-50 top-0 border-b border-base-300 bg-black">      <div className="flex items-center justify-start">
         <Link href="/" passHref>
                <Image src={Logo} alt="Stateforward Logo" width={220} height={30} />
         </Link>
@@ -48,9 +52,9 @@ const Header = () => {
 
       {isMenuOpen && (
         <div ref={menuRef} className="absolute top-full right-0 p-5 bg-black border border-base-300 w-full">
-                      <Link href="/docs" className="block p-2" onClick={toggleMenu}>Docs</Link>
-          <Link href="/roadmap" className="block p-2" onClick={toggleMenu}>Roadmap</Link>
-          <a href="https://github.com/stateforward" className="block p-2" target="_blank" rel="noopener noreferrer" onClick={toggleMenu}>
+          <Link href="/docs" className="block p-2" onClick={closeMenu}>Docs</Link>
+          <Link href="/roadmap" className="block p-2" onClick={closeMenu}>Roadmap</Link>
+          <a href="https://github.com/stateforward" className="block p-2" target="_blank" rel="noopener noreferrer" onClick={closeMenu}>
             GitHub
           </a>
         </div>
