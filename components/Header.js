@@ -20,7 +20,7 @@ const Header = () => {
       </div>
 
       <div className="hidden sm:flex items-center justify-end">
-        <Link href="/docs" className="mr-8">Docs</Link>
+        <Link href="https://docs.stateforward.org" className="mr-8">Docs</Link>
         <Link href="/roadmap" className="mr-8">Roadmap</Link>
         <Link href="/changelog" className="mr-8">Changelog</Link>
         <a href="https://github.com/stateforward" target="_blank" rel="noopener noreferrer">
