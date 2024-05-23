@@ -34,7 +34,6 @@ const TabbedContent = () => {
         return (
           <SyntaxHighlighter language="python" style={atomDark}>
 {`import asyncio
-from dataclasses import dataclass
 import stateforward as sf
 
 
@@ -49,12 +48,6 @@ class OffEvent(sf.Event):
 class PrintBehavior(sf.Behavior):
     def activity(self, event: sf.Event = None):
         pass
-
-
-@dataclass(unsafe_hash=True)
-class FooEvent(sf.Event):
-    foo: str
-
 
 class LightSwitch(sf.AsyncStateMachine):
     flashing = False
@@ -80,11 +73,7 @@ class LightSwitch(sf.AsyncStateMachine):
         sf.transition(OffEvent, source=On, target=Off),
         sf.transition(FlashEvent, source=Off, target=Flashing),
     )
-
-
-class ThreeWay(LightSwitch):
-    pass
-
+    
 async def light_switch_main():
     # instantiate a light switch
     light_switch = LightSwitch()
