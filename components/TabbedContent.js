@@ -33,46 +33,75 @@ const TabbedContent = () => {
       default:
         return (
           <SyntaxHighlighter language="python" style={atomDark}>
-{`import stateforward as sf
-import asyncio
+{`import asyncio
+from dataclasses import dataclass
+import stateforward as sf
+
 
 class OnEvent(sf.Event):
     pass
 
+
 class OffEvent(sf.Event):
     pass
 
-class LightSwitch(sf.AsyncStateMachine):
-    class On(sf.State):
-        async def entry(self, event: OnEvent):
-            print("Light on")
 
-        async def exit(self, event: OffEvent):
-            print("Switching off...")
+class PrintBehavior(sf.Behavior):
+    def activity(self, event: sf.Event = None):
+        pass
+
+
+@dataclass(unsafe_hash=True)
+class FooEvent(sf.Event):
+    foo: str
+
+
+class LightSwitch(sf.AsyncStateMachine):
+    flashing = False
+    FlashEvent = sf.when(lambda self, event=None: self.model.flashing)
+
+    class On(sf.State):
+        entry = sf.redefine(PrintBehavior)
+        exit = sf.redefine(PrintBehavior)
 
     class Off(sf.State):
-        async def entry(self, event: OffEvent):
-            print("Light off")
+        entry = sf.redefine(PrintBehavior)
+        exit = sf.redefine(PrintBehavior)
 
-        async def exit(self, event: OnEvent):
-            print("Switching on...")
+    class Broken(sf.State):
+        pass
+
+    class Flashing(sf.State):
+        pass
 
     initial = sf.initial(Off)
     transitions = sf.collection(
         sf.transition(OnEvent, source=Off, target=On),
         sf.transition(OffEvent, source=On, target=Off),
+        sf.transition(FlashEvent, source=Off, target=Flashing),
     )
 
-async def main():
-    light_switch = LightSwitch()
-    await light_switch.interpreter.start()
-    print(light_switch.state)
-    await sf.dispatch(OnEvent(), light_switch)
-    print(light_switch.state)
-    await sf.dispatch(OffEvent(), light_switch)
-    print(light_switch.state)
 
-asyncio.run(main())`}
+class ThreeWay(LightSwitch):
+    pass
+
+async def light_switch_main():
+    # instantiate a light switch
+    light_switch = LightSwitch()
+    # start the interpreter and wait for it to be settled
+    await light_switch.interpreter.start()
+    # output the current states of the state machine
+    print(light_switch.state)
+    # dispatch a OnEvent to the state machine
+    await sf.send(OnEvent(), light_switch)
+    # output the current states of the state machine
+    print(light_switch.state)
+    # dispatch a OffEvent to the state machine
+    await sf.send(OffEvent(), light_switch)
+
+
+asyncio.run(light_switch_main())
+`}
           </SyntaxHighlighter>
         );
     }
