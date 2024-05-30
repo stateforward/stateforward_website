@@ -3,30 +3,88 @@ import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { atomDark } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 
 const TabbedContent = () => {
-  const [activeTab, setActiveTab] = useState('Python');
+  const [activeTab, setActiveTab] = useState('Rust');
 
   const renderContent = () => {
     switch (activeTab) {
         case 'Rust':
             return (
               <SyntaxHighlighter language="rust" style={atomDark}>
-    {`// Rust code example
-    fn main() {
-        println!("Hello, Rust!");
-    }`}
+    {`// API is a work in progress and is subject to change
+use stateforward as sf;
+
+struct E1Interface {}
+
+struct O1Interface {
+    value: i32
+}
+let mut example_model = sf::model(vec![
+  sf::statemachine("sm", vec![
+      sf::event("e1", E1Interface {}),
+      sf::operation("o1", |_:&sf::Model, args: Option<Box<dyn Any>>| {
+          None
+      }),
+      sf::attribute("a1", 1),
+      sf::region("r1", vec![
+          sf::state("s1", vec![
+              sf::entry(|_, _: &mut Behavior| {
+                  println!("Hello from entry");
+              }),
+          ]),
+          sf::state("s2", vec![]),
+          sf::transition(vec!["/sm/e1"], "s1", "s2", None, None),
+      ]),
+      sf::region("r2", vec![
+          sf::state("s2", vec![])
+      ])
+  ])
+]);
+
+example_model.execute();
+    `}
               </SyntaxHighlighter>
             );
           case 'Javascript':
             return (
               <SyntaxHighlighter language="jsx" style={atomDark}>
-    {`// Javascript code example
-    import Javascript from 'javascript';
-    
-    function App() {
-      return <div>Hello, Javascript!</div>;
-    }
-    
-    export default App;`}
+    {`
+import * as sf from "stateforward";
+
+const example_model = sf.model({
+  sm: sf.statemachine({
+    a1: sf.attribute<string>(""),
+    s1: sf.state({
+      async activity(element) {},
+    }),
+    o1: sf.operation(async (port: number) => {
+      console.log("operation");
+    }),
+    r1: sf.region({
+      s1: sf.state({
+          async activity(element) {},
+        },
+      ),
+      s2: sf.state({}),
+      initial: sf.initial("s1"),
+      s1_s2: sf.transition({
+        source: "s1",
+        target: "s2"
+      }),
+    }),
+    r2: sf.region({
+      s1: sf.state({
+          async activity(self) {
+            console.log("activity", this);
+          },
+        },
+      ),
+      initial: sf.initial("s1"),
+    })
+  })
+});
+
+await example_model.execute();
+`}
               </SyntaxHighlighter>
             );
       case 'Python':
